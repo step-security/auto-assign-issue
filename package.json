@@ -1,0 +1,64 @@
+{
+    "name": "auto-assign-issue",
+    "version": "2.2.0",
+    "private": true,
+    "description": "GitHub action that auto-assigns issues to users",
+    "main": "src/index.js",
+    "scripts": {
+        "lint": "eslint src/**",
+        "prettier": "prettier --write \"**/*.{html,js,json,md,yaml,yml}\"",
+        "prettier:verify": "prettier --check \"**/*.{html,js,json,md,yaml,yml}\"",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "prepare": "husky || true",
+        "precommit": "lint-staged",
+        "build": "ncc build ./src/index.js -m -o dist",
+        "all": "npm run prettier && npm run lint && npm run test && npm run build"
+    },
+    "lint-staged": {
+        "*.{html,js,json,md,yaml,yml}": [
+            "prettier --write \"**/*.{html,js,json,md,yaml,yml}\""
+        ],
+        "./src/**/*.js": [
+            "eslint",
+            "jest --bail --findRelatedTests --passWithNoTests"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pozil/auto-assign-issue.git"
+    },
+    "keywords": [
+        "github",
+        "action",
+        "issue",
+        "assign"
+    ],
+    "author": "step-security",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/pozil/auto-assign-issue/issues"
+    },
+    "homepage": "https://github.com/pozil/auto-assign-issue#readme",
+    "dependencies": {
+        "@actions/core": "^1.11.1",
+        "@actions/github": "^6.0.0",
+        "axios": "^1.9.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.19.0",
+        "@vercel/ncc": "^0.38.3",
+        "eslint": "^9.19.0",
+        "eslint-plugin-jest": "^28.11.0",
+        "husky": "^9.1.7",
+        "jest": "^29.7.0",
+        "lint-staged": "^15.4.3",
+        "prettier": "^3.4.2"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "volta": {
+        "node": "20.13.1"
+    }
+}
