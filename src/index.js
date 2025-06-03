@@ -23,88 +23,92 @@ async function validateSubscription() {
 
 try {
     // Get params
-    validateSubscription();
-    const gitHubToken = core.getInput('repo-token', { required: true });
-    const assignees = parseAssignments(
-        core.getInput('assignees', { required: false })
-    );
-    const teams = parseAssignments(core.getInput('teams', { required: false }));
-    let numOfAssignee;
-    try {
-        numOfAssignee = parseIntInput(
-            core.getInput('numOfAssignee', {
-                require: false
-            }),
-            0
+    (async () => {
+        await validateSubscription();
+        const gitHubToken = core.getInput('repo-token', { required: true });
+        const assignees = parseAssignments(
+            core.getInput('assignees', { required: false })
         );
-    } catch (error) {
-        throw new Error(
-            `Failed to parse value for numOfAssignee: ${error.message}`
+        const teams = parseAssignments(
+            core.getInput('teams', { required: false })
         );
-    }
-
-    const abortIfPreviousAssignees = core.getBooleanInput(
-        'abortIfPreviousAssignees',
-        { required: false }
-    );
-    const removePreviousAssignees = core.getBooleanInput(
-        'removePreviousAssignees',
-        { required: false }
-    );
-    const allowNoAssignees = core.getBooleanInput('allowNoAssignees', {
-        required: false
-    });
-    const allowSelfAssign = core.getBooleanInput('allowSelfAssign', {
-        required: false
-    });
-
-    let manualIssueNumber;
-    try {
-        manualIssueNumber = parseIntInput(
-            core.getInput('issueNumber', {
-                require: false
-            }),
-            0
-        );
-    } catch (error) {
-        throw new Error(
-            `Failed to parse value for issueNumber: ${error.message}`
-        );
-    }
-
-    const teamIsPullRequestReviewer = core.getBooleanInput(
-        'teamIsPullRequestReviewer',
-        {
-            required: false
+        let numOfAssignee;
+        try {
+            numOfAssignee = parseIntInput(
+                core.getInput('numOfAssignee', {
+                    require: false
+                }),
+                0
+            );
+        } catch (error) {
+            throw new Error(
+                `Failed to parse value for numOfAssignee: ${error.message}`
+            );
         }
-    );
 
-    const failsIfUsersCannotBeAssigned = core.getBooleanInput(
-        'failsIfUsersCannotBeAssigned',
-        {
+        const abortIfPreviousAssignees = core.getBooleanInput(
+            'abortIfPreviousAssignees',
+            { required: false }
+        );
+        const removePreviousAssignees = core.getBooleanInput(
+            'removePreviousAssignees',
+            { required: false }
+        );
+        const allowNoAssignees = core.getBooleanInput('allowNoAssignees', {
             required: false
+        });
+        const allowSelfAssign = core.getBooleanInput('allowSelfAssign', {
+            required: false
+        });
+
+        let manualIssueNumber;
+        try {
+            manualIssueNumber = parseIntInput(
+                core.getInput('issueNumber', {
+                    require: false
+                }),
+                0
+            );
+        } catch (error) {
+            throw new Error(
+                `Failed to parse value for issueNumber: ${error.message}`
+            );
         }
-    );
 
-    // Get octokit
-    const octokit = github.getOctokit(gitHubToken);
+        const teamIsPullRequestReviewer = core.getBooleanInput(
+            'teamIsPullRequestReviewer',
+            {
+                required: false
+            }
+        );
 
-    // Get context
-    const contextPayload = github.context.payload;
+        const failsIfUsersCannotBeAssigned = core.getBooleanInput(
+            'failsIfUsersCannotBeAssigned',
+            {
+                required: false
+            }
+        );
 
-    // Run action
-    runAction(octokit, contextPayload, {
-        assignees,
-        teams,
-        numOfAssignee,
-        abortIfPreviousAssignees,
-        removePreviousAssignees,
-        allowNoAssignees,
-        allowSelfAssign,
-        manualIssueNumber,
-        teamIsPullRequestReviewer,
-        failsIfUsersCannotBeAssigned
-    });
+        // Get octokit
+        const octokit = github.getOctokit(gitHubToken);
+
+        // Get context
+        const contextPayload = github.context.payload;
+
+        // Run action
+        runAction(octokit, contextPayload, {
+            assignees,
+            teams,
+            numOfAssignee,
+            abortIfPreviousAssignees,
+            removePreviousAssignees,
+            allowNoAssignees,
+            allowSelfAssign,
+            manualIssueNumber,
+            teamIsPullRequestReviewer,
+            failsIfUsersCannotBeAssigned
+        });
+    })();
 } catch (error) {
     core.setFailed(error.message);
 }

@@ -33029,58 +33029,60 @@
             }
         }
         try {
-            validateSubscription();
-            const e = Dt.getInput('repo-token', { required: true });
-            const t = Tt(Dt.getInput('assignees', { required: false }));
-            const s = Tt(Dt.getInput('teams', { required: false }));
-            let A;
-            try {
-                A = Ft(Dt.getInput('numOfAssignee', { require: false }), 0);
-            } catch (e) {
-                throw new Error(
-                    `Failed to parse value for numOfAssignee: ${e.message}`
-                );
-            }
-            const r = Dt.getBooleanInput('abortIfPreviousAssignees', {
-                required: false
-            });
-            const o = Dt.getBooleanInput('removePreviousAssignees', {
-                required: false
-            });
-            const n = Dt.getBooleanInput('allowNoAssignees', {
-                required: false
-            });
-            const i = Dt.getBooleanInput('allowSelfAssign', {
-                required: false
-            });
-            let a;
-            try {
-                a = Ft(Dt.getInput('issueNumber', { require: false }), 0);
-            } catch (e) {
-                throw new Error(
-                    `Failed to parse value for issueNumber: ${e.message}`
-                );
-            }
-            const c = Dt.getBooleanInput('teamIsPullRequestReviewer', {
-                required: false
-            });
-            const l = Dt.getBooleanInput('failsIfUsersCannotBeAssigned', {
-                required: false
-            });
-            const u = xt.getOctokit(e);
-            const p = xt.context.payload;
-            St(u, p, {
-                assignees: t,
-                teams: s,
-                numOfAssignee: A,
-                abortIfPreviousAssignees: r,
-                removePreviousAssignees: o,
-                allowNoAssignees: n,
-                allowSelfAssign: i,
-                manualIssueNumber: a,
-                teamIsPullRequestReviewer: c,
-                failsIfUsersCannotBeAssigned: l
-            });
+            (async () => {
+                await validateSubscription();
+                const e = Dt.getInput('repo-token', { required: true });
+                const t = Tt(Dt.getInput('assignees', { required: false }));
+                const s = Tt(Dt.getInput('teams', { required: false }));
+                let A;
+                try {
+                    A = Ft(Dt.getInput('numOfAssignee', { require: false }), 0);
+                } catch (e) {
+                    throw new Error(
+                        `Failed to parse value for numOfAssignee: ${e.message}`
+                    );
+                }
+                const r = Dt.getBooleanInput('abortIfPreviousAssignees', {
+                    required: false
+                });
+                const o = Dt.getBooleanInput('removePreviousAssignees', {
+                    required: false
+                });
+                const n = Dt.getBooleanInput('allowNoAssignees', {
+                    required: false
+                });
+                const i = Dt.getBooleanInput('allowSelfAssign', {
+                    required: false
+                });
+                let a;
+                try {
+                    a = Ft(Dt.getInput('issueNumber', { require: false }), 0);
+                } catch (e) {
+                    throw new Error(
+                        `Failed to parse value for issueNumber: ${e.message}`
+                    );
+                }
+                const c = Dt.getBooleanInput('teamIsPullRequestReviewer', {
+                    required: false
+                });
+                const l = Dt.getBooleanInput('failsIfUsersCannotBeAssigned', {
+                    required: false
+                });
+                const u = xt.getOctokit(e);
+                const p = xt.context.payload;
+                St(u, p, {
+                    assignees: t,
+                    teams: s,
+                    numOfAssignee: A,
+                    abortIfPreviousAssignees: r,
+                    removePreviousAssignees: o,
+                    allowNoAssignees: n,
+                    allowSelfAssign: i,
+                    manualIssueNumber: a,
+                    teamIsPullRequestReviewer: c,
+                    failsIfUsersCannotBeAssigned: l
+                });
+            })();
         } catch (e) {
             Dt.setFailed(e.message);
         }
