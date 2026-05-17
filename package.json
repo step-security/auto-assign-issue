@@ -26,7 +26,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pozil/auto-assign-issue.git"
+        "url": "git+https://github.com/step-security/auto-assign-issue.git"
     },
     "keywords": [
         "github",
@@ -37,9 +37,9 @@
     "author": "step-security",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/pozil/auto-assign-issue/issues"
+        "url": "https://github.com/step-security/auto-assign-issue/issues"
     },
-    "homepage": "https://github.com/pozil/auto-assign-issue#readme",
+    "homepage": "https://github.com/step-security/auto-assign-issue#readme",
     "dependencies": {
         "@actions/core": "^1.11.1",
         "@actions/github": "^6.0.0",
@@ -56,7 +56,7 @@
         "prettier": "^3.4.2"
     },
     "engines": {
-        "node": ">=20"
+        "node": ">=24"
     },
     "volta": {
         "node": "20.13.1"
