@@ -51,9 +51,8 @@ async function validateSubscription() {
     }
 }
 
-try {
-    // Get params
-    (async () => {
+(async () => {
+    try {
         await validateSubscription();
         const gitHubToken = core.getInput('repo-token', { required: true });
         const assignees = parseAssignments(
@@ -126,7 +125,7 @@ try {
         const contextPayload = github.context.payload;
 
         // Run action
-        runAction(octokit, contextPayload, {
+        await runAction(octokit, contextPayload, {
             assignees,
             teams,
             numOfAssignee,
@@ -138,7 +137,7 @@ try {
             teamIsPullRequestReviewer,
             failsIfUsersCannotBeAssigned
         });
-    })();
-} catch (error) {
-    core.setFailed(error.message);
-}
+    } catch (error) {
+        core.setFailed(error.message);
+    }
+})();
