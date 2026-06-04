@@ -2,10 +2,10 @@ name: Auto Cherry-Pick from Upstream
 
 on:
     workflow_run:
-        workflows: ["Release GitHub Actions"]
+        workflows: ['Release GitHub Actions']
         types:
-          - completed
-          
+            - completed
+
     workflow_dispatch:
         inputs:
             base_branch:
@@ -21,9 +21,9 @@ on:
                 required: false
                 default: '24'
             mode:
-               description: "Run mode: cherry-pick or verify"
-               required: false
-               default: "cherry-pick"
+                description: 'Run mode: cherry-pick or verify'
+                required: false
+                default: 'cherry-pick'
 
     pull_request:
         types: [opened, synchronize, labeled]
