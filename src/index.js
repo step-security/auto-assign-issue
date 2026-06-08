@@ -1,9 +1,9 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const fs = require('fs');
-const { runAction } = require('./action');
-const { parseIntInput, parseAssignments } = require('./utils');
-const axios = require('axios');
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+import { runAction } from './action.js';
+import { parseIntInput, parseAssignments } from './utils.js';
+import fs from 'fs';
+import axios from 'axios';
 
 async function validateSubscription() {
     let repoPrivate;
