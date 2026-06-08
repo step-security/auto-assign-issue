@@ -71,7 +71,8 @@ async function validateSubscription() {
             );
         } catch (error) {
             throw new Error(
-                `Failed to parse value for numOfAssignee: ${error.message}`
+                `Failed to parse value for numOfAssignee: ${error.message}`,
+                { cause: error }
             );
         }
 
@@ -100,7 +101,8 @@ async function validateSubscription() {
             );
         } catch (error) {
             throw new Error(
-                `Failed to parse value for issueNumber: ${error.message}`
+                `Failed to parse value for issueNumber: ${error.message}`,
+                { cause: error }
             );
         }
 

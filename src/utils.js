@@ -15,10 +15,10 @@ const parseAssignments = (valueString) => {
         if (itemValues.length === 2) {
             try {
                 weight = parseIntInput(itemValues[1]);
-                // eslint-disable-next-line no-unused-vars
             } catch (e) {
                 throw new Error(
-                    `Invalid weight value for ${name} assignment: ${itemValues[1]}`
+                    `Invalid weight value for ${name} assignment: ${itemValues[1]}`,
+                    { cause: e }
                 );
             }
         } else if (itemValues.length > 2) {
