@@ -45,5 +45,11 @@ jobs:
             - name: 'Unit test'
               run: npm run test:coverage
 
+            - name: 'Build'
+              run: npm run build
+
+            - name: 'Verify generated dist'
+              run: git diff --exit-code dist
+
             - name: 'Upload code coverage to Codecov.io'
               uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3.1.6
