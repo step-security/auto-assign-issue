@@ -1,0 +1,17 @@
+{
+  "$comment": "Managed automatically when syncing with upstream. Do not edit by hand.",
+  "schema_version": 1,
+  "onboarding_type": "copied",
+  "action_type": "node",
+  "upstream": {
+    "repository": "pozil/auto-assign-issue",
+    "synced_tag": "v4.1.0",
+    "synced_commit": "d6e511896e5f1d2408e74db74416647d8ff80c8c",
+    "archived": false
+  },
+  "build": {
+    "package_manager": "npm@11.19.1",
+    "node_version": "24",
+    "script": "all"
+  }
+}

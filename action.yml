@@ -1,4 +1,5 @@
 name: 'Auto-assign Issue'
+author: step-security
 description: 'Auto-assigns issues to users or team members'
 inputs:
     repo-token:
